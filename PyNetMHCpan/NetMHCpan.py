@@ -264,8 +264,13 @@ class Helper:
             job_number += 1
 
     def _run_jobs(self):
-        self.jobs = _run_multiple_processes(self.jobs, n_processes=self.n_threads)
-
+        if len(self.jobs) == 1:
+            self.jobs[0].run()
+        else:
+            self.jobs = _run_multiple_processes(
+                self.jobs,
+                n_processes=self.n_threads
+            )
     def _clear_jobs(self):
         self.jobs = []
 
