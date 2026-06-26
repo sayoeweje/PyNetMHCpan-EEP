@@ -1,6 +1,16 @@
 # PyNetMHCpan-EEP
 
-A simple tool for using NetMHCpan and NetMHCIIpan using multiple CPUs in a Python environment.
+A lightweight Python wrapper for NetMHCpan and NetMHCIIpan designed for high-throughput peptide optimization workflows.
+
+This repository is based on the original PyNetMHCpan package written by Kevin Kovalchik (https://github.com/kevinkovalchik/PyNetMHCpan), with modifications to improve compatibility with modern Python environments and integration into an iterative peptide design pipeline described in "Discovery of Enhanced Endosomal Escape Peptides by Active Machine Learning."
+
+Modifications from the original package
+- Updated for compatibility with modern versions of Python, NumPy, and pandas (e.g. removed deprecated pandas.append)
+- Created single initiation of a temporary directory for data storage (versus a new directory for each peptide evaluated)
+- Update to pynetmhcpan.config to include filepaths relevant to the project described above
+- Removed function creating multiple processes to be run in parallel, replaced with version creating multiple processes only if required
+
+Description and usage instructions are otherwise unchanged from the original package.
 
 **Usage:**
 ```python
