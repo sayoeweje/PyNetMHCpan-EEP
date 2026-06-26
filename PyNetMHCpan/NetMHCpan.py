@@ -153,11 +153,10 @@ class Helper:
             columns=['Peptide', 'Allele', 'Rank', 'Binder']
         )
         self.wd = Path(output_dir) if output_dir else Path(os.getcwd())
-        self.temp_dir = Path(tmp_dir) / 'PyNetMHCpan'
         if not self.wd.exists():
             self.wd.mkdir(parents=True)
-        if not self.temp_dir.exists():
-            self.temp_dir.mkdir(parents=True)
+        self.temp_dir = Path(tmp_dir) / "PyNetMHCpan"
+        self.temp_dir.mkdir(parents=True, exist_ok=True)
         self.predictions_made = False
         self.not_enough_peptides = []
         if n_threads < 1 or n_threads > os.cpu_count():
@@ -273,11 +272,7 @@ class Helper:
     def _aggregate_netmhcpan_results(self):
         for job in self.jobs:
             self._parse_netmhc_output(job.stdout.decode())
-
-        self.predictions.to_csv(str(Path(self.temp_dir) / f'netMHC'
-                                                          f'{"II" if self.mhc_class == "II" else ""}'
-                                                          f'pan_predictions.csv'))
-
+            
     def _parse_netmhc_output(self, stdout: str):
         rows = []
         lines = stdout.split('\n')
@@ -320,8 +315,6 @@ class Helper:
             print(stdout)
 
     def make_predictions(self):
-        self.temp_dir = self.temp_dir / str(uuid4())
-        self.temp_dir.mkdir(parents=True)
         self._make_binding_prediction_jobs()
         self._run_jobs()
         self._aggregate_netmhcpan_results()
