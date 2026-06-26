@@ -1,15 +1,15 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='PyNetMHCpan',
-    version='0.1.5',
+    name='PyNetMHCpan-EEP',
+    version='0.2.0',
     packages=find_packages(),
-    url='https://github.com/kevinkovalchik/PyNetMHCpan',
+    url='https://github.com/sayoeweje/PyNetMHCpan-EEP',
     python_requires='>=3.7',
     license='MIT',
-    author='Kevin Kovalchik',
+    author='Feyisayo Eweje',
     include_package_data=True,
     author_email='',
-    description='A simple tool for using NetMHCpan and NetMHCIIpan using multiple CPUs in a Python environment.',
+    description='Modified implementation of PyNetMHCpan for use in iterative mutagenesis peptide optimization studies.',
     install_requires=["numpy", "pandas"]
 )
