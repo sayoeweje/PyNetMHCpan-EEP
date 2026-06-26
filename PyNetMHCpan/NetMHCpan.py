@@ -307,8 +307,14 @@ class Helper:
                 else:
                     binder = 'Non-binder'
             rows.append((peptide, allele, rank, binder))
-        self.predictions = self.predictions.append(
-            pd.DataFrame(columns=['Peptide', 'Allele', 'Rank', 'Binder'], data=rows),
+        self.predictions = pd.concat(
+            [
+                self.predictions,
+                pd.DataFrame(
+                    data=rows,
+                    columns=["Peptide", "Allele", "Rank", "Binder"]
+                )
+            ],
             ignore_index=True
         )
         if len(rows) == 0:
