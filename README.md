@@ -1,4 +1,4 @@
-# PyNetMHCpan
+# PyNetMHCpan-EEP
 
 A simple tool for using NetMHCpan and NetMHCIIpan using multiple CPUs in a Python environment.
 
